@@ -145,8 +145,8 @@ const [pizza, , Risotto, ...otherfood] = [
 ];
 console.log(pizza, Risotto, ...otherfood);
 
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
 
 // const add = function (...num) {
 //   let sum = 0;
