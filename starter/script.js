@@ -11,6 +11,20 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
@@ -28,22 +42,17 @@ const restaurant = {
     console.log(mainIngreient);
     console.log(otherings);
   },
-
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
 };
+const rest1 = {
+  Name: 'capri',
+  numGuests: 20,
+};
+
+const rest2 = {
+  Name: 'la piazza',
+  owner: 'gio rossi',
+};
+
 // const { bob, openingHours, categories } = restaurant;
 // console.log(bob, openingHours, categories);
 
@@ -163,3 +172,27 @@ const restaurant = {
 // restaurant.orderPizza('mushroom', 'susages', 'extra chesse');
 
 // restaurant.orderPizza('mushroom');
+// restaurant.numguests = 23;
+// console.log(3 || 'hugo');
+// console.log('' || 'hugo');
+// console.log(true || 0);
+// console.log(undefined || null);
+
+// const guests1 = restaurant.numguests ? restaurant.numguests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numguests || 10;
+// console.log(guests2);
+
+// console.log(0 && 'hugo');
+// console.log(7 && 'hugo');
+
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('susage', 'chili flakse');
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('susage', 'chili flakse');
+
+//null
+// const guestsC = restaurant.numguests ?? 10;
+// console.log(guestsC);
