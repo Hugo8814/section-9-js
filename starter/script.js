@@ -53,8 +53,8 @@ const rest2 = {
   owner: 'gio rossi',
 };
 
-// const { bob, openingHours, categories } = restaurant;
-// console.log(bob, openingHours, categories);
+const { bob, openingHours, categories } = restaurant;
+console.log(bob, openingHours, categories);
 
 // restaurant.orderDelivery({
 //   time: '22:30',
