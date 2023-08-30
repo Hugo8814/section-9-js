@@ -156,9 +156,9 @@ const restaurant = {
 add(2, 3);
 add(2, 3, 4, 5, 5, 3, 6, 2, 5);
 
-const z = [2, 3, 5, 3];
+// const z = [2, 3, 5, 3];
 
-add(...z);
+// add(...z);
 
 // restaurant.orderPizza('mushroom', 'susages', 'extra chesse');
 
