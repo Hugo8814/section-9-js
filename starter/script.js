@@ -148,11 +148,11 @@ console.log(pizza, Risotto, ...otherfood);
 const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays);
 
-const add = function (...num) {
-  let sum = 0;
-  for (let i = 0; i < num.length; i++) sum += num[i];
-  console.log(sum);
-};
+// const add = function (...num) {
+//   let sum = 0;
+//   for (let i = 0; i < num.length; i++) sum += num[i];
+//   console.log(sum);
+// };
 // add(2, 3);
 // add(2, 3, 4, 5, 5, 3, 6, 2, 5);
 
