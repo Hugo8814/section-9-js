@@ -160,6 +160,6 @@ const z = [2, 3, 5, 3];
 
 add(...z);
 
-restaurant.orderPizza('mushroom', 'susages', 'extra chesse');
+// restaurant.orderPizza('mushroom', 'susages', 'extra chesse');
 
 // restaurant.orderPizza('mushroom');
