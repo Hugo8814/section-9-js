@@ -1,56 +1,221 @@
 'use strict';
 
-const weekdays = ['sun', 'tue', 'wed'];
-
-const openingHours = {
-  [weekdays[0]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekdays[1]]: {
-    open: 11,
-    close: 23,
-  },
-  [weekdays[2]]: {
-    open: 0, // Open 24 hours
-    close: 12 + 24,
-  },
-};
-// console.log(openingHours);
-
 // Data needed for a later exercise
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
 // Data needed for first part of the section
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  //es6
-  openingHours,
+//   //es6
+//   openingHours,
 
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
-    console.log(
-      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
-  },
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
 
-  orderpasta(ing1, ing2, ing3) {
-    console.log(`heres is your pasta made with ${ing1} ,${ing2} and ${ing3}.`);
-  },
+//   orderpasta(ing1, ing2, ing3) {
+//     console.log(`heres is your pasta made with ${ing1} ,${ing2} and ${ing3}.`);
+//   },
 
-  orderPizza(mainIngreient, ...otherings) {
-    console.log(mainIngreient);
-    console.log(otherings);
-  },
-};
+//   orderPizza(mainIngreient, ...otherings) {
+//     console.log(mainIngreient);
+//     console.log(otherings);
+//   },
+// };
+
+// Coding Challenge #4
+
+// Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+// The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+// THIS TEST DATA (pasted to textarea)
+// underscore_case;
+// first_name;
+// Some_Variable;
+// calculate_AGE;
+// delayed_departure;
+
+// SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+// underscoreCase      ✅
+// firstName           ✅✅
+// someVariable        ✅✅✅
+// calculateAge        ✅✅✅✅
+// delayedDeparture    ✅✅✅✅✅
+
+// HINT 1: Remember which character defines a new line in the textarea 😉
+// HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+// HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+// HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+// Afterwards, test with your own test data!
+
+// GOOD LUCK 😀
+
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// const textArea = document.querySelector('textarea');
+// const button = document.querySelector('button');
+
+// button.addEventListener('click', function () {
+//   const text = textArea.value;
+//   const rows = text.split('\n');
+//   //console.log(rows);
+
+//   for (const [i, row] of rows.entries()) {
+//     const [first, second] = row.toLowerCase().trim().split('_');
+//     const output = `${first}${second.replace(
+//       second[0],
+//       second[0].toUpperCase()
+//     )}`;
+//     console.log(`${output.padEnd(20)} ${'✅'.repeat(i + 1)}`);
+//   }
+// });
+
+// console.log('a+very+nice+sring'.split('+'));
+// console.log('hugo pereira'.split(' '));
+
+// const [firstName, lastName] = 'hugo pereira'.split(' ');
+
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+
+// console.log(newName);
+
+// const capName = function (name) {
+//   const nameUpper = [];
+//   const names = name.split(' ');
+
+//   for (const n of names) {
+//     //nameUpper.push(word[0].toUpperCase() + word.slice(1));
+//     nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+//   }
+//   console.log(nameUpper.join(' '));
+// };
+
+// capName('jessica anna smith dave');
+// capName('hugo pereira');
+
+// const message = 'go to gate 23!';
+// console.log(message.padStart(25, '+').padEnd(35, '!'));
+// console.log('hugo'.padStart(25, '+'));
+
+// const maskCreditCard = function (number) {
+//   const str = number + '';
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, '*');
+// };
+// console.log(maskCreditCard(2345678923454576));
+
+// maskCreditCard('2342345678923454576');
+
+// const message2 = ' bad weather ... all planes delayed';
+// console.log(message2.repeat(4));
+
+// const planesInLine = function (n) {
+//   console.log(`there are ${n} planes in the line${'😂'.repeat(n)}`);
+// };
+
+// planesInLine(5);
+
+// const airline = 'hearth row';
+// console.log(airline.toUpperCase());
+
+// const guy = 'jOnaS';
+// const guyl = guy.toLowerCase();
+// const guyC = guyl[0].toUpperCase() + guyl.slice(1);
+// console.log(guyC);
+
+// const email = 'hello@hugo.io';
+// const login = ' Hello@hugo.Io\n';
+
+// // const lowerEmail = login.toLowerCase();
+// // const trimmed = lowerEmail.trim();
+// // console.log(trimmed);
+
+// const normalEmail = login.toLowerCase().trim();
+// console.log(normalEmail);
+// console.log(email === normalEmail);
+
+// const priceGB = '£288,93';
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+
+// console.log(priceUS);
+
+// const acc = ' all passenger come to door door 23';
+// console.log(acc.replaceAll('door', 'gate'));
+// console.log(acc.replace(/door/g, 'gate'));
+
+// const plane = 'A320neo';
+// console.log(plane.includes('A32'));
+// console.log(plane.startsWith('A'));
+// console.log(plane.startsWith('neo'));
+// console.log(plane.endsWith('neo'));
+
+// if (plane.startsWith('airbus') && plane.endsWith('neo')) {
+//   console.log('part of the new planes');
+// } else {
+//   console.log('no not part of it');
+// }
+
+// const checkBag = function (item) {
+//   const bags = item.toLowerCase();
+//   if (bags.includes('knife') || bags.includes('gun')) {
+//     console.log('your not allwoed that on the plane');
+//   } else {
+//     console.log('welcome aboard ');
+//   }
+// };
+// checkBag('i have food, laptop and a Knife');
+// checkBag('i have snakes, laptop and a Gun');
+// checkBag('i have snakes, laptop and a toy');
+
+// const plane = 'A320';
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+// console.log(airline.slice(-2));
+
+// const checkMiddleSeat = function (seat) {
+//   const s = seat.slice(-1);
+//   if (s === 'b' || s === 'e') {
+//     console.log('you got the middle seat🤣 ');
+//   } else {
+//     console.log('got lucky 😁');
+//   }
+// };
+// checkMiddleSeat('11b');
+// checkMiddleSeat('23c');
+// checkMiddleSeat('3e');
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[1]);
+// console.log('b737'[0]);
+
+// console.log(airline.length);
+// console.log('hdsuhdsooo'.length);
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('row'));
+
+//console.log(airline.slice(6, 7));
 
 // 1. Create an array 'events' of the different game events that happened (no duplicates)
 // 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
